@@ -1,10 +1,15 @@
 from flask import Flask
 import tkinter as tk
+import os
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
+    # Set up the virtual display using Xvfb
+    os.system('Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &')
+    os.environ['DISPLAY'] = ':99'
+
     # Create and configure the Tkinter root window
     root = tk.Tk()
     root.attributes("-fullscreen", True, "-topmost", True)
@@ -33,6 +38,7 @@ if __name__ == '__main__':
     # Use a production WSGI server instead of the development server
     from waitress import serve
     serve(app, host='0.0.0.0', port=5000)
+
 
 
 
