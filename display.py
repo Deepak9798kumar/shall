@@ -15,19 +15,19 @@ def index():
     # Hide the cursor
     root.config(cursor="none")
 
-    # Disable mouse events (same as before)
-    root.bind('<Motion>', lambda event: root.event_generate('<<Motion>>'))
-    root.bind('<Button>', lambda event: root.event_generate('<<Button>>'))
-    root.bind('<Double-Button>', lambda event: root.event_generate('<<Double-Button>>'))
-    root.bind('<Triple-Button>', lambda event: root.event_generate('<<Triple-Button>>'))
-    root.bind('<B1-Motion>', lambda event: root.event_generate('<<B1-Motion>>'))
-    root.bind('<B2-Motion>', lambda event: root.event_generate('<<B2-Motion>>'))
-    root.bind('<B3-Motion>', lambda event: root.event_generate('<<B3-Motion>>'))
-    root.bind('<Enter>', lambda event: root.event_generate('<<Enter>>'))
-    root.bind('<Leave>', lambda event: root.event_generate('<<Leave>>'))
-    root.bind('<MouseWheel>', lambda event: root.event_generate('<<MouseWheel>>'))
-    root.bind('<KeyPress>', lambda event: root.event_generate('<<KeyPress>>'))
-    root.bind('<KeyRelease>', lambda event: root.event_generate('<<KeyRelease>>'))
+    # Disable mouse events
+    root.bind('<Motion>', lambda event: root.event_generate('<<Motion>>', when='tail'))
+    root.bind('<Button>', lambda event: root.event_generate('<<Button>>', when='tail'))
+    root.bind('<Double-Button>', lambda event: root.event_generate('<<Double-Button>>', when='tail'))
+    root.bind('<Triple-Button>', lambda event: root.event_generate('<<Triple-Button>>', when='tail'))
+    root.bind('<B1-Motion>', lambda event: root.event_generate('<<B1-Motion>>', when='tail'))
+    root.bind('<B2-Motion>', lambda event: root.event_generate('<<B2-Motion>>', when='tail'))
+    root.bind('<B3-Motion>', lambda event: root.event_generate('<<B3-Motion>>', when='tail'))
+    root.bind('<Enter>', lambda event: root.event_generate('<<Enter>>', when='tail'))
+    root.bind('<Leave>', lambda event: root.event_generate('<<Leave>>', when='tail'))
+    root.bind('<MouseWheel>', lambda event: root.event_generate('<<MouseWheel>>', when='tail'))
+    root.bind('<KeyPress>', lambda event: root.event_generate('<<KeyPress>>', when='tail'))
+    root.bind('<KeyRelease>', lambda event: root.event_generate('<<KeyRelease>>', when='tail'))
 
     # Capture the screen
     screen = pyautogui.screenshot()
@@ -40,7 +40,7 @@ def index():
     hello_label = tk.Label(root, text="Hello Moto", font=("Arial", 24))
     hello_label.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
-    time_interrupt = 100000000000  # Time screen is active in ms
+    time_interrupt = 100000  # Time screen is active in milliseconds
     root.after(time_interrupt, root.destroy)
 
     root.mainloop()
@@ -48,3 +48,4 @@ def index():
 if __name__ == '__main__':
     server = gevent.pywsgi.WSGIServer(('0.0.0.0', 5000), app)
     server.serve_forever()
+
