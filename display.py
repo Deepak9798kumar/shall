@@ -1,6 +1,6 @@
 from flask import Flask, render_template
-import gevent.pywsgi
 import tkinter as tk
+import os
 
 app = Flask(__name__)
 
@@ -14,24 +14,7 @@ def index():
     # Hide the cursor
     root.config(cursor="none")
 
-    # Disable mouse events
-    root.bind('<Motion>', lambda event: root.event_generate('<<Motion>>', when='tail'))
-    root.bind('<Button>', lambda event: root.event_generate('<<Button>>', when='tail'))
-    root.bind('<Double-Button>', lambda event: root.event_generate('<<Double-Button>>', when='tail'))
-    root.bind('<Triple-Button>', lambda event: root.event_generate('<<Triple-Button>>', when='tail'))
-    root.bind('<B1-Motion>', lambda event: root.event_generate('<<B1-Motion>>', when='tail'))
-    root.bind('<B2-Motion>', lambda event: root.event_generate('<<B2-Motion>>', when='tail'))
-    root.bind('<B3-Motion>', lambda event: root.event_generate('<<B3-Motion>>', when='tail'))
-    root.bind('<Enter>', lambda event: root.event_generate('<<Enter>>', when='tail'))
-    root.bind('<Leave>', lambda event: root.event_generate('<<Leave>>', when='tail'))
-    root.bind('<MouseWheel>', lambda event: root.event_generate('<<MouseWheel>>', when='tail'))
-    root.bind('<KeyPress>', lambda event: root.event_generate('<<KeyPress>>', when='tail'))
-    root.bind('<KeyRelease>', lambda event: root.event_generate('<<KeyRelease>>', when='tail'))
 
-    # Capture the screen
-
-
-    # Create a label with the captured screen image
     label = tk.Label(root)
     label.place(x=0, y=0, relwidth=1, relheight=1)
 
@@ -45,6 +28,9 @@ def index():
     root.mainloop()
 
 if __name__ == '__main__':
-    server = gevent.pywsgi.WSGIServer(('0.0.0.0', 5000), app)
-    server.serve_forever()
+    # Set the display environment variable
+    os.environ['DISPLAY'] = ':0'
+
+    app.run(host='0.0.0.0', port=5000)
+
 
