@@ -24,12 +24,12 @@ pyscreenshot==3.1
 PyScreeze==0.1.29
 pytweening==1.0.7
 PyVirtualDisplay==3.0
-pywin32==228
 waitress==2.1.2
 Werkzeug==2.2.3
 xvfbwrapper==0.2.9
 zope.event==4.6
 zope.interface==6.0
+
 
 
 
