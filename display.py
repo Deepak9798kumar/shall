@@ -18,9 +18,6 @@ def index():
     # Hide the cursor
     root.config(cursor="none")
 
-    # Capture the screen (optional, requires pyautogui)
-    # screen = pyautogui.screenshot()
-
     # Create a label with the captured screen image
     label = tk.Label(root)
     label.place(x=0, y=0, relwidth=1, relheight=1)
@@ -38,6 +35,7 @@ if __name__ == '__main__':
     # Use a production WSGI server instead of the development server
     from waitress import serve
     serve(app, host='0.0.0.0', port=5000)
+
 
 
 
