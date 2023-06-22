@@ -1,15 +1,10 @@
 from flask import Flask
+from threading import Thread
 import tkinter as tk
-import os
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    # Set up the virtual display using Xvfb
-    os.system('Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &')
-    os.environ['DISPLAY'] = ':99'
-
+def run_tkinter_app():
     # Create and configure the Tkinter root window
     root = tk.Tk()
     root.attributes("-fullscreen", True, "-topmost", True)
@@ -17,6 +12,9 @@ def index():
 
     # Hide the cursor
     root.config(cursor="none")
+
+    # Capture the screen (optional, requires pyautogui)
+    # screen = pyautogui.screenshot()
 
     # Create a label with the captured screen image
     label = tk.Label(root)
@@ -31,10 +29,19 @@ def index():
 
     root.mainloop()
 
+@app.route('/')
+def index():
+    return 'Flask app is running'
+
 if __name__ == '__main__':
-    # Use a production WSGI server instead of the development server
-    from waitress import serve
-    serve(app, host='0.0.0.0', port=5000)
+    # Create a new thread for running the Tkinter app
+    tkinter_thread = Thread(target=run_tkinter_app)
+    tkinter_thread.daemon = True
+    tkinter_thread.start()
+
+    # Run the Flask app
+    app.run(host='0.0.0.0', port=5000)
+
 
 
 
