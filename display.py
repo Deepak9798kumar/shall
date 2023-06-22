@@ -28,15 +28,16 @@ def index():
     time_interrupt = 100000  # Time screen is active in milliseconds
     root.after(time_interrupt, root.destroy)
 
-    Expose 3306
-
     root.mainloop()
 
 if __name__ == '__main__':
-    # Set the display environment variable (for Windows, it is not required)
-    # os.environ['DISPLAY'] = ':0'
+    # Set the display environment variable (for Linux or macOS)
+    os.environ['DISPLAY'] = ':0'
 
-    app.run()
+    # Use a production WSGI server instead of the development server
+    from waitress import serve
+    serve(app, host='0.0.0.0', port=5000)
+
 
 
 
