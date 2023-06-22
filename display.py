@@ -14,7 +14,10 @@ def index():
     # Hide the cursor
     root.config(cursor="none")
 
+    # Capture the screen (optional, requires pyautogui)
+    # screen = pyautogui.screenshot()
 
+    # Create a label with the captured screen image
     label = tk.Label(root)
     label.place(x=0, y=0, relwidth=1, relheight=1)
 
@@ -28,9 +31,10 @@ def index():
     root.mainloop()
 
 if __name__ == '__main__':
-    # Set the display environment variable
-    os.environ['DISPLAY'] = ':0'
+    # Set the display environment variable (for Windows, it is not required)
+    # os.environ['DISPLAY'] = ':0'
 
-    app.run(host='0.0.0.0', port=5000)
+    app.run()
+
 
 
