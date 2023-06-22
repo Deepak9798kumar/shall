@@ -24,7 +24,7 @@ pyscreenshot==3.1
 PyScreeze==0.1.29
 pytweening==1.0.7
 PyVirtualDisplay==3.0
-pywin32==306
+pypiwin32==223
 waitress==2.1.2
 Werkzeug==2.2.3
 xvfbwrapper==0.2.9
