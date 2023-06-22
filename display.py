@@ -1,7 +1,6 @@
 from flask import Flask, render_template
 import gevent.pywsgi
 import tkinter as tk
-import pyautogui
 
 app = Flask(__name__)
 
@@ -30,7 +29,7 @@ def index():
     root.bind('<KeyRelease>', lambda event: root.event_generate('<<KeyRelease>>', when='tail'))
 
     # Capture the screen
-    screen = pyautogui.screenshot()
+
 
     # Create a label with the captured screen image
     label = tk.Label(root)
