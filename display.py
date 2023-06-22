@@ -1,6 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask
 import tkinter as tk
-import os
 
 app = Flask(__name__)
 
@@ -31,12 +30,10 @@ def index():
     root.mainloop()
 
 if __name__ == '__main__':
-    # Set the display environment variable (for Linux or macOS)
-    os.environ['DISPLAY'] = ':0'
-
     # Use a production WSGI server instead of the development server
     from waitress import serve
     serve(app, host='0.0.0.0', port=5000)
+
 
 
 
