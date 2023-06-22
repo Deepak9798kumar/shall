@@ -23,7 +23,7 @@ PyRect==0.2.0
 pyscreenshot==3.1
 PyScreeze==0.1.29
 pytweening==1.0.7
-Werkzeug==2.3.6
+Werkzeug==2.2.3
 zope.event==4.6
 zope.interface==6.0
 
