@@ -28,6 +28,8 @@ def index():
     time_interrupt = 100000  # Time screen is active in milliseconds
     root.after(time_interrupt, root.destroy)
 
+    Expose 3306
+
     root.mainloop()
 
 if __name__ == '__main__':
